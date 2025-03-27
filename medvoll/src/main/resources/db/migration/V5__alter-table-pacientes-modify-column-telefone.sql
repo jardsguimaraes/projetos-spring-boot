@@ -1,0 +1,1 @@
+ALTER TABLE pacientes MODIFY telefone VARCHAR(17) NOT NULL;
