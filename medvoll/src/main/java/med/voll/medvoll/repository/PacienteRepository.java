@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import med.voll.medvoll.model.PacienteModel;
+import med.voll.medvoll.model.Paciente;
 
-public interface PacienteRepository extends JpaRepository<PacienteModel, Long> {
+public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
-    Page<PacienteModel> findAllByAtivoTrue(Pageable paginacao);
+    Page<Paciente> findAllByAtivoTrue(Pageable paginacao);
 
 }

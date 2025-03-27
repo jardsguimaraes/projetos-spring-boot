@@ -1,6 +1,6 @@
 package med.voll.medvoll.dtos.paciente;
 
-import med.voll.medvoll.model.PacienteModel;
+import med.voll.medvoll.model.Paciente;
 
 public record DadosListagemPacientes(
     Long id,
@@ -8,7 +8,7 @@ public record DadosListagemPacientes(
     String email,
     String cpf
 ) {
-    public DadosListagemPacientes(PacienteModel paciente) {
+    public DadosListagemPacientes(Paciente paciente) {
         this(paciente.getId(), paciente.getNome(), paciente.getEmail(), paciente.getCpf());
     }
 }
