@@ -83,6 +83,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+		<version>4.5.0</version> <!-- Caso não funcione utilizar a versão 4.2.1 -->
+</dependency>
 	</dependencies>
 
 	<build>
