@@ -24,6 +24,9 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
+    @Value("${api.security.issuer}")
+    private String issuer;
+
     /**
      * Método para gerar um token
      * Para gerar um token, é necessário utilizar a biblioteca jjwt
@@ -34,7 +37,7 @@ public class TokenService {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Voll.med")
+                    .withIssuer(issuer)
                     .withSubject(usuario.getLogin())
                     .withClaim("id", usuario.getId()) // withClaim utilizado para adicionar informações ao token
                     .withExpiresAt(dataExpiracao())
@@ -48,7 +51,7 @@ public class TokenService {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.require(algoritmo)
-                    .withIssuer("API Voll.med")
+                    .withIssuer(issuer)
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
