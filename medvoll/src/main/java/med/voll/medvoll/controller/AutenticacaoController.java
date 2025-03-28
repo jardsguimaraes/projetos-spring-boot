@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import med.voll.medvoll.dtos.autenticacao.DadosAutenticacao;
-import med.voll.medvoll.dtos.autenticacao.DadosTokenJWT;
+import med.voll.medvoll.dtos.security.DadosTokenJWT;
 import med.voll.medvoll.infra.security.TokenService;
 import med.voll.medvoll.model.Usuario;
 
