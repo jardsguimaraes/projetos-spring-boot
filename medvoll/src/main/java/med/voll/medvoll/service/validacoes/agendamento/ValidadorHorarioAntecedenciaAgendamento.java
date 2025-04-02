@@ -9,7 +9,7 @@ import med.voll.medvoll.dtos.agendamento.DadosAgendamentoConsulta;
 import med.voll.medvoll.infra.exception.ValidacaoException;
 
 @Component
-public class ValidadorHorarioAntecedencia implements ValidadorAgendamentoConsultas {
+public class ValidadorHorarioAntecedenciaAgendamento implements ValidadorAgendamentoConsultas {
 
     public void validar(DadosAgendamentoConsulta dados) {
         var dataConsulta = dados.data();
@@ -18,7 +18,7 @@ public class ValidadorHorarioAntecedencia implements ValidadorAgendamentoConsult
 
         if (antecedencia < 30) {
             throw new ValidacaoException("A Consulta deve ser agendada " +
-                "com antecedência mínima de 30 minutos");
+                    "com antecedência mínima de 30 minutos");
         }
     }
 }

@@ -26,7 +26,8 @@ public class SecurityConfigurations {
         return http.csrf(csrf -> csrf.disable()) // Desativa CSRF para APIs stateless
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Define API stateless
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/login").permitAll() // Permite o login sem autenticação
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll() // Permite acesso ao login sem autenticação
+                        .requestMatchers( "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll() // Permite ao swagger sem autenticação
                         .anyRequest().authenticated()) // Exige autenticação para todas as outras requisições
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) // Adiciona o filtro JWT
                 .build();

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.var;
 import med.voll.medvoll.dtos.agendamento.DadosAgendamentoConsulta;
+import med.voll.medvoll.dtos.agendamento.DadosCancelamentoConsulta;
 import med.voll.medvoll.dtos.agendamento.DadosDetalhamentoConsulta;
 import med.voll.medvoll.infra.exception.ValidacaoException;
 import med.voll.medvoll.model.Consulta;
@@ -15,6 +16,7 @@ import med.voll.medvoll.repository.ConsultaRepository;
 import med.voll.medvoll.repository.MedicoRepository;
 import med.voll.medvoll.repository.PacienteRepository;
 import med.voll.medvoll.service.validacoes.agendamento.ValidadorAgendamentoConsultas;
+import med.voll.medvoll.service.validacoes.cancelamento.ValidadorCancelamentoConsultas;
 
 @Service
 public class AgendaDeConsultaService {
@@ -29,7 +31,10 @@ public class AgendaDeConsultaService {
     private PacienteRepository pacienteRepository;
 
     @Autowired
-    private List<ValidadorAgendamentoConsultas> validadores;
+    private List<ValidadorAgendamentoConsultas> validadoresAgendamentos;
+
+    @Autowired
+    private List<ValidadorCancelamentoConsultas> validadoresCancelamento;
 
     public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dados) {
         if (!pacienteRepository.existsById(dados.idPaciente())) {
@@ -40,15 +45,15 @@ public class AgendaDeConsultaService {
             throw new ValidacaoException("Médico não encontrado");
         }
 
-        validadores.forEach(v -> v.validar(dados));
+        validadoresAgendamentos.forEach(v -> v.validar(dados));
 
         var medico = escolherMedico(dados);
         if (medico == null) {
             throw new ValidacaoException("Não existe médico disponível nessa data");
-            
+
         }
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
-        var consulta = new Consulta(null, medico, paciente, dados.data());
+        var consulta = new Consulta(null, medico, paciente, dados.data(), true, null);
 
         consultaRepository.save(consulta);
 
@@ -65,5 +70,16 @@ public class AgendaDeConsultaService {
         }
 
         return medicoRepository.escolherMedicoAleatorioLivreData(dados.especialidade());
+    }
+
+    public void cancelar(DadosCancelamentoConsulta dados) {
+        if (!consultaRepository.existsById(dados.idConsulta())) {
+            throw new ValidacaoException("Consulta não encontrada");
+        }
+
+        validadoresCancelamento.forEach(v -> v.validar(dados));
+
+        var consulta = consultaRepository.getReferenceById(dados.idConsulta());
+        consulta.cancelar(dados.motivo());
     }
 }

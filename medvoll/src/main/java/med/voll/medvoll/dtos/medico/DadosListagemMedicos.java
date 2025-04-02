@@ -1,6 +1,6 @@
 package med.voll.medvoll.dtos.medico;
 
-import med.voll.medvoll.enumeracoes.Especialidade;
+import med.voll.medvoll.enumeracoes.EspecialidadeMedica;
 import med.voll.medvoll.model.Medico;
 
 public record DadosListagemMedicos(
@@ -8,7 +8,7 @@ public record DadosListagemMedicos(
         String nome,
         String email,
         String crm,
-        Especialidade especialidade) {
+        EspecialidadeMedica especialidade) {
     public DadosListagemMedicos(Medico medico) {
         this(medico.getId(), medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade());
     }

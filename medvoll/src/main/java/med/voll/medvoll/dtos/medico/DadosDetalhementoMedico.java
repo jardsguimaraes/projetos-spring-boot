@@ -1,6 +1,6 @@
 package med.voll.medvoll.dtos.medico;
 
-import med.voll.medvoll.enumeracoes.Especialidade;
+import med.voll.medvoll.enumeracoes.EspecialidadeMedica;
 import med.voll.medvoll.model.Endereco;
 import med.voll.medvoll.model.Medico;
 
@@ -8,7 +8,7 @@ public record DadosDetalhementoMedico(
     Long id,
     String nome,
     String crm,
-    Especialidade especialidade,
+    EspecialidadeMedica especialidade,
     String telefone,
     String email,
     Endereco endereco

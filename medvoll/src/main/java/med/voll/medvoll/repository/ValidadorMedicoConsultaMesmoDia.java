@@ -8,7 +8,8 @@ public class ValidadorMedicoConsultaMesmoDia {
     private ConsultaRepository consultaRepository;
 
     public void validar(DadosAgendamentoConsulta dados) {
-        var medicoPossuiConsultaMesmoDia = consultaRepository.existsByMedicoIdAndData(dados.idMedico(), dados.data());
+        var medicoPossuiConsultaMesmoDia = consultaRepository
+                .existsByMedicoIdAndDataAndMotivoIsNull(dados.idMedico(), dados.data());
 
         if (medicoPossuiConsultaMesmoDia) {
             throw new ValidacaoException("Médico já possui uma consulta agendada para o mesmo dia");

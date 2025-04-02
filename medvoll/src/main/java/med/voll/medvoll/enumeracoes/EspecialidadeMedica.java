@@ -1,6 +1,6 @@
 package med.voll.medvoll.enumeracoes;
 
-public enum Especialidade {
+public enum EspecialidadeMedica {
     ORTOPEDIA,
     CARDIOLOGIA,
     GINECOLOGIA,

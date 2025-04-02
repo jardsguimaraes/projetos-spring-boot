@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import med.voll.medvoll.enumeracoes.Especialidade;
+import med.voll.medvoll.enumeracoes.EspecialidadeMedica;
 import med.voll.medvoll.model.Medico;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
@@ -25,12 +25,13 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
                             from
                                 Consulta c
                             where
-                                c.data = :data)
+                                c.data = :data and
+                                c.motivo is null)
             order by
                 rand()
             limit 1
             """)
-    Medico escolherMedicoAleatorioLivreData(Especialidade especialidade);
+    Medico escolherMedicoAleatorioLivreData(EspecialidadeMedica especialidade);
 
     @Query("""
             select

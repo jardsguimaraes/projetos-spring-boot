@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.medvoll.dtos.medico.DadosAtualizacaoMedico;
 import med.voll.medvoll.dtos.medico.DadosCadastroMedico;
-import med.voll.medvoll.enumeracoes.Especialidade;
+import med.voll.medvoll.enumeracoes.EspecialidadeMedica;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -33,7 +33,7 @@ public class Medico {
     private String crm;
 
     @Enumerated(EnumType.STRING)
-    private Especialidade especialidade;
+    private EspecialidadeMedica especialidade;
 
     @Embedded
     private Endereco endereco;
