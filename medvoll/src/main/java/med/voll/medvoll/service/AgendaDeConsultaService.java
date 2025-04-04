@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.var;
 import med.voll.medvoll.dtos.agendamento.DadosAgendamentoConsulta;
 import med.voll.medvoll.dtos.agendamento.DadosCancelamentoConsulta;
 import med.voll.medvoll.dtos.agendamento.DadosDetalhamentoConsulta;
