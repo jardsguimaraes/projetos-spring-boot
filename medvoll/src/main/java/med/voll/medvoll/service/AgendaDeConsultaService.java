@@ -69,7 +69,7 @@ public class AgendaDeConsultaService {
             throw new ValidacaoException("Especialidade é obrigatório quando o médico não for informado");
         }
 
-        return medicoRepository.escolherMedicoAleatorioLivreData(dados.especialidade());
+        return medicoRepository.escolherMedicoAleatorioLivreData(dados.especialidade(), dados.data());
     }
 
     public void cancelar(DadosCancelamentoConsulta dados) {
